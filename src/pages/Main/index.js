@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Keyboard } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -11,6 +11,18 @@ import { Container, Title, Form, Input, Submit, List } from './styles';
 export default function Main() {
   const [input, setInput] = useState('');
   const [error, setError] = useState(false);
+  const [repositories, setRepositories] = useState([]);
+
+  useEffect(() => {
+    async function loadRepositories() {
+      const realm = await getRealm();
+      const data = realm.objects('Repository').sorted('stars', true);
+
+      setRepositories(data);
+    }
+
+    loadRepositories();
+  }, []);
 
   async function saveRepository(repository) {
     const data = {
@@ -62,16 +74,7 @@ export default function Main() {
       </Form>
       <List
         keyboardShouldPersistTaps="handled"
-        data={[
-          {
-            id: 1,
-            name: 'My Repo',
-            description:
-              'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo dolor quisquam natus delectus hic, ad recusandae eveniet praesentium. Voluptatem beatae odit necessitatibus cumque voluptate incidunt totam explicabo, consequuntur alias obcaecati?',
-            stars: 3,
-            forks: 13
-          }
-        ]}
+        data={repositories}
         keyExtractor={item => String(item.id)}
         renderItem={({ item }) => <Repository data={item} />}
       />

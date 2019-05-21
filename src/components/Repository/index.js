@@ -16,7 +16,7 @@ export default function Repository({ data }) {
         </Stat>
         <Stat>
           <Icon name="code-fork" size={16} color="#333" />
-          <StatCount>{data.stars}</StatCount>
+          <StatCount>{data.forks}</StatCount>
         </Stat>
       </Stats>
     </Container>
