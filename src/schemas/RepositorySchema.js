@@ -5,9 +5,9 @@ export default class RepositorySchema {
     properties: {
       id: { type: 'int', indexed: true },
       name: 'string',
-      fullname: 'string',
+      fullName: 'string',
       description: 'string',
-      start: 'int',
+      stars: 'int',
       forks: 'int'
     }
   };
