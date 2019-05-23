@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Keyboard } from 'react-native';
+import { Keyboard, StatusBar } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
 import Repository from '~/components/Repository';
@@ -8,7 +8,7 @@ import getRealm from '~/services/realm';
 
 import { Container, Title, Form, Input, Submit, List } from './styles';
 
-export default function Main() {
+export default function Main(props) {
   const [input, setInput] = useState('');
   const [error, setError] = useState(false);
   const [repositories, setRepositories] = useState([]);
@@ -71,6 +71,11 @@ export default function Main() {
 
   return (
     <Container>
+      <StatusBar
+        backgroundColor="transparent"
+        translucent
+        barStyle="light-content"
+      />
       <Title>Repositories</Title>
 
       <Form>
@@ -92,6 +97,7 @@ export default function Main() {
         keyExtractor={item => String(item.id)}
         renderItem={({ item }) => (
           <Repository
+            onPress={() => props.navigation.push('ReadMe')}
             data={item}
             onRefresh={() => handleRefreshRepository(item)}
           />

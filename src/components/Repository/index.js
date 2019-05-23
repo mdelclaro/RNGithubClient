@@ -12,9 +12,9 @@ import {
   RefreshText
 } from './styles';
 
-export default function Repository({ data, onRefresh }) {
+export default function Repository({ data, onRefresh, onPress }) {
   return (
-    <Container>
+    <Container onPress={onPress}>
       <Name>{data.name}</Name>
       <Description>{data.description}</Description>
 
