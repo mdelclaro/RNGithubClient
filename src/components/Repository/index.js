@@ -30,7 +30,7 @@ export default function Repository({ data, onRefresh }) {
       </Stats>
 
       <Refresh onPress={onRefresh}>
-        <Icon name="refresh" size={16} color="#" />
+        <Icon name="refresh" size={16} color="#7159c1" />
         <RefreshText>REFRESH</RefreshText>
       </Refresh>
     </Container>
