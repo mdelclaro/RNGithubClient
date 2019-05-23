@@ -97,7 +97,14 @@ export default function Main(props) {
         keyExtractor={item => String(item.id)}
         renderItem={({ item }) => (
           <Repository
-            onPress={() => props.navigation.push('ReadMe')}
+            onPress={() =>
+              props.navigation.navigate({
+                routeName: 'ReadMe',
+                params: {
+                  fullName: item.fullName
+                }
+              })
+            }
             data={item}
             onRefresh={() => handleRefreshRepository(item)}
           />
